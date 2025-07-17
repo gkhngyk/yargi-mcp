@@ -36,7 +36,7 @@ def create_auth_enabled_app(app_name: str = "Yargı MCP Server") -> FastMCP:
     app = FastMCP(app_name)
     
     # Check if authentication is enabled
-    auth_enabled = os.getenv("ENABLE_AUTH", "true").lower() == "true"
+    auth_enabled = False
     
     if not auth_enabled:
         logger.info("Authentication disabled, returning basic FastMCP app")
