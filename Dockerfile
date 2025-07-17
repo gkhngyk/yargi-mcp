@@ -16,7 +16,7 @@ COPY . .
 
 # -------- Environment ------------------------------------------------------
 ENV PYTHONUNBUFFERED=1
-ENV ENABLE_AUTH=true
+ENV ENABLE_AUTH=false
 ENV PORT=8000
 
 # -------- Health check -----------------------------------------------------
