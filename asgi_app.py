@@ -31,7 +31,7 @@ from mcp_auth_http_simple import router as mcp_auth_router
 
 # OAuth configuration from environment variables
 CLERK_ISSUER = os.getenv("CLERK_ISSUER", "https://accounts.yargimcp.com")
-BASE_URL = os.getenv("BASE_URL", "https://yargimcp.com")
+BASE_URL = os.getenv("BASE_URL", "https://yargi-mcp-production.up.railway.app")
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -161,10 +161,12 @@ async def mcp_protocol_handler(request: Request):
         await mcp_app(scope, receive, send)
         
         from starlette.responses import Response
+        # Convert ASGI headers format [(b'name', b'value')] to dict {'name': 'value'}
+        headers_dict = {name.decode(): value.decode() for name, value in response_headers}
         return Response(
             content=response_content,
             status_code=response_status,
-            headers=response_headers
+            headers=headers_dict
         )
     
     # Auth is enabled - validate tokens
