@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 # OAuth configuration
-BASE_URL = os.getenv("BASE_URL", "https://api.yargimcp.com")
+BASE_URL = os.getenv("BASE_URL", "https://yargi-mcp-production.up.railway.app")
 CLERK_DOMAIN = os.getenv("CLERK_DOMAIN", "accounts.yargimcp.com")
 
 # Initialize Redis store

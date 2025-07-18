@@ -127,7 +127,47 @@ async def mcp_protocol_handler(request: Request):
             content="Session terminated successfully"
         )
     
-    # REQUIRED: Validate Bearer JWT tokens for all MCP requests
+    # Check if auth is enabled
+    auth_enabled = os.getenv("ENABLE_AUTH", "false").lower() == "true"
+    
+    if not auth_enabled:
+        # Auth is disabled - set default user context and forward to MCP app
+        logger.info("Authentication disabled, allowing request without token")
+        request.state.user_id = "anonymous_user"
+        request.state.session_id = f"anonymous_session_{int(time.time())}"
+        request.state.token_scopes = ["read", "search"]
+        
+        # Forward request directly to MCP app
+        async def receive():
+            return await request.receive()
+        
+        scope = request.scope.copy()
+        scope["path"] = "/"
+        scope["path_info"] = "/"
+        
+        # Simple forwarding
+        response_content = b""
+        response_status = 200
+        response_headers = []
+        
+        async def send(message):
+            nonlocal response_content, response_status, response_headers
+            if message["type"] == "http.response.start":
+                response_status = message["status"] 
+                response_headers = message["headers"]
+            elif message["type"] == "http.response.body":
+                response_content += message.get("body", b"")
+        
+        await mcp_app(scope, receive, send)
+        
+        from starlette.responses import Response
+        return Response(
+            content=response_content,
+            status_code=response_status,
+            headers=response_headers
+        )
+    
+    # Auth is enabled - validate tokens
     auth_header = request.headers.get("Authorization")
     if not auth_header or not auth_header.startswith("Bearer "):
         logger.error("Missing or invalid Authorization header")
@@ -285,7 +325,7 @@ async def root():
             "Bedesten API (Multiple courts)"
         ],
         "authentication": {
-            "enabled": os.getenv("ENABLE_AUTH", "false").lower() == "true",
+            "enabled": False,
             "type": "OAuth 2.0 via Clerk",
             "issuer": os.getenv("CLERK_ISSUER", "https://clerk.accounts.dev"),
             "providers": ["google"],
@@ -385,10 +425,10 @@ async def mcp_info():
         "description": "MCP server for Turkish legal databases",
         "protocol": "mcp/1.0",
         "transport": ["http"],
-        "authentication_required": True,
+        "authentication_required": False,
         "authentication": {
             "type": "oauth2",
-            "authorization_url": "https://yargimcp.com/sign-in?redirect_url=https://api.yargimcp.com/auth/mcp-callback",
+            "authorization_url": "https://yargimcp.com/sign-in?redirect_url=" + BASE_URL + "/auth/mcp-callback",
             "token_url": f"{BASE_URL}/auth/mcp-token",
             "scopes": ["read", "search"],
             "provider": "clerk"
@@ -415,7 +455,7 @@ async def mcp_info():
                 "X-Session-ID: <session-id>"
             ]
         }
-    })
+    }, media_type="application/json; charset=utf-8")
 
 # OAuth 2.0 Protected Resource Metadata (RFC 9728) - MCP Spec Required
 @app.get("/.well-known/oauth-protected-resource")
