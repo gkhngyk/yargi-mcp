@@ -2,35 +2,11 @@
 
 [![Star History Chart](https://api.star-history.com/svg?repos=saidsurucu/yargi-mcp&type=Date)](https://www.star-history.com/#saidsurucu/yargi-mcp&Date)
 
-Bu proje, çeşitli Türk hukuk kaynaklarına (Yargıtay, Danıştay, Emsal Kararlar, Uyuşmazlık Mahkemesi, Anayasa Mahkemesi - Norm Denetimi ile Bireysel Başvuru Kararları, Kamu İhale Kurulu Kararları, Rekabet Kurumu Kararları, Sayıştay Kararları, KVKK Kararları ve BDDK Kararları) erişimi kolaylaştıran bir [FastMCP](https://gofastmcp.com/) sunucusu oluşturur. Bu sayede, bu kaynaklardan veri arama ve belge getirme işlemleri, Model Context Protocol (MCP) destekleyen LLM (Büyük Dil Modeli) uygulamaları (örneğin Claude Desktop veya [5ire](https://5ire.app)) ve diğer istemciler tarafından araç (tool) olarak kullanılabilir hale gelir.
-
----
-
-## 🚀 5 Dakikada Başla (Remote MCP)
-
-### ✅ Kurulum Gerektirmez! Hemen Kullan!
-
-🔗 **Remote MCP Adresi:** `https://yargimcp.fastmcp.app/mcp`
-
-### Claude Desktop ile Kullanım
-
-1. **Claude Desktop'ı açın**
-2. **Settings → Connectors → Add Custom Connector**
-3. **Bilgileri girin:**
-   - **Name:** `Yargı MCP`
-   - **URL:** `https://yargimcp.fastmcp.app/mcp`
-4. **Add** butonuna tıklayın
-5. **Hemen kullanmaya başlayın!** 🎉
-
-> 💡 **İpucu:** Remote MCP sayesinde Python, uv veya herhangi bir kurulum yapmadan doğrudan Claude Desktop üzerinden Türk hukuk kaynaklarına erişebilirsiniz!
-
----
+Bu proje, çeşitli Türk hukuk kaynaklarına (Yargıtay, Danıştay, Emsal Kararlar, Uyuşmazlık Mahkemesi, Anayasa Mahkemesi - Norm Denetimi ile Bireysel Başvuru Kararları, Kamu İhale Kurulu Kararları, Rekabet Kurumu Kararları ve Sayıştay Kararları) erişimi kolaylaştıran bir [FastMCP](https://gofastmcp.com/) sunucusu oluşturur. Bu sayede, bu kaynaklardan veri arama ve belge getirme işlemleri, Model Context Protocol (MCP) destekleyen LLM (Büyük Dil Modeli) uygulamaları (örneğin Claude Desktop veya [5ire](https://5ire.app)) ve diğer istemciler tarafından araç (tool) olarak kullanılabilir hale gelir.
 
 ![örnek](./ornek.png)
 
 🎯 **Temel Özellikler**
-
-🚀 **YÜKSEK PERFORMANS OPTİMİZASYONU:** Bu MCP sunucusu **%61.8 token azaltma** ile optimize edilmiştir (8,692 token tasarrufu). Claude AI ile daha hızlı yanıt süreleri ve daha verimli etkileşim sağlar.
 
 * Çeşitli Türk hukuk veritabanlarına programatik erişim için standart bir MCP arayüzü.
 * **Kapsamlı Mahkeme Daire/Kurul Filtreleme:** 79 farklı daire/kurul filtreleme seçeneği
@@ -51,14 +27,12 @@ Bu proje, çeşitli Türk hukuk kaynaklarına (Yargıtay, Danıştay, Emsal Kara
     * **Rekabet Kurumu:** Çeşitli kriterlerle Kurul kararlarını arama; karar metinlerini Markdown formatında getirme.
     * **Sayıştay:** 3 karar türü ile kapsamlı denetim kararlarına erişim + **8 Daire Filtreleme** + **Tarih Aralığı & İçerik Arama** (Genel Kurul yorumlayıcı kararları, Temyiz Kurulu itiraz kararları, Daire ilk derece denetim kararları)
     * **KVKK (Kişisel Verilerin Korunması Kurulu):** Brave Search API ile veri koruma kararlarını arama; uzun karar metinlerini (5.000 karakterlik) sayfalanmış Markdown formatında getirme + **Türkçe Arama** + **Site Hedeflemeli Arama** (kvkk.gov.tr kararları)
-    * **BDDK (Bankacılık Düzenleme ve Denetleme Kurumu):** Bankacılık düzenleme kararlarını arama; karar metinlerini Markdown formatında getirme + **Optimized Search** + **"Karar Sayısı" Targeting** + **Spesifik URL Filtreleme** (bddk.org.tr/Mevzuat/DokumanGetir)
 
 * Karar metinlerinin daha kolay işlenebilmesi için Markdown formatına çevrilmesi.
 * Claude Desktop uygulaması ile `fastmcp install` komutu kullanılarak kolay entegrasyon.
 * Yargı MCP artık [5ire](https://5ire.app) gibi Claude Desktop haricindeki MCP istemcilerini de destekliyor!
 ---
-<details>
-<summary>🚀 <strong>Claude Haricindeki Modellerle Kullanmak İçin Çok Kolay Kurulum (Örnek: 5ire için)</strong></summary>
+🚀 **Claude Haricindeki Modellerle Kullanmak İçin Çok Kolay Kurulum (Örnek: 5ire için)**
 
 Bu bölüm, Yargı MCP aracını 5ire gibi Claude Desktop dışındaki MCP istemcileriyle kullanmak isteyenler içindir.
 
@@ -82,11 +56,9 @@ Bu bölüm, Yargı MCP aracını 5ire gibi Claude Desktop dışındaki MCP istem
 * Şimdi **Tools** altında **Yargı MCP**'yi görüyor olmalısınız. Üstüne geldiğinizde sağda çıkan butona tıklayıp etkinleştirin (yeşil ışık yanmalı).
 * Artık Yargı MCP ile konuşabilirsiniz.
 
-</details>
-
 ---
-<details>
-<summary>⚙️ <strong>Claude Desktop Manuel Kurulumu</strong></summary>
+⚙️ **Claude Desktop Manuel Kurulumu**
+
 
 1.  **Ön Gereksinimler:** Python, `uv`, (Windows için) Microsoft Visual C++ Redistributable'ın sisteminizde kurulu olduğundan emin olun. Detaylı bilgi için yukarıdaki "5ire için Kurulum" bölümündeki ilgili adımlara bakabilirsiniz.
 2.  Claude Desktop **Settings -> Developer -> Edit Config**.
@@ -107,11 +79,8 @@ Bu bölüm, Yargı MCP aracını 5ire gibi Claude Desktop dışındaki MCP istem
     ```
 4.  Claude Desktop'ı kapatıp yeniden başlatın.
 
-</details>
-
 ---
-<details>
-<summary>🌟 <strong>Gemini CLI ile Kullanım</strong></summary>
+🌟 **Gemini CLI ile Kullanım**
 
 Yargı MCP'yi Gemini CLI ile kullanmak için:
 
@@ -152,38 +121,42 @@ Yargı MCP'yi Gemini CLI ile kullanmak için:
      - "Danıştay'ın imar planı iptaline ilişkin kararlarını bul"
      - "Anayasa Mahkemesi'nin ifade özgürlüğü kararlarını getir"
 
-</details>
+🛠️ **Kullanılabilir Araçlar (MCP Tools)**
 
-<details>
-<summary>🛠️ <strong>Kullanılabilir Araçlar (MCP Tools)</strong></summary>
+Bu FastMCP sunucusu **30 MCP aracı** sunar:
 
-Bu FastMCP sunucusu **19 optimize edilmiş MCP aracı** sunar (token verimliliği için optimize edilmiş):
+### **Yargıtay Araçları (Ana API + 52 Daire Filtreleme)**
+1. `search_yargitay_detailed(arananKelime, birimYrgKurulDaire, ...)`: Yargıtay kararlarını detaylı kriterlerle arar. **52 daire/kurul seçeneği** (Hukuk/Ceza Daireleri 1-23, Genel Kurullar, Başkanlar Kurulu)
+2. `get_yargitay_document_markdown(id: str)`: Belirli bir Yargıtay kararının metnini Markdown formatında getirir.
 
-### **Yargıtay Araçları (Birleşik Bedesten API - Token Optimized)**
-*Not: Yargıtay araçları token verimliliği için birleşik Bedesten API'ye entegre edilmiştir*
+### **Danıştay Araçları (Dual API + 27 Daire Filtreleme)**
+3. `search_danistay_by_keyword(andKelimeler, orKelimeler, ...)`: Danıştay kararlarını anahtar kelimelerle arar.
+4. `search_danistay_detailed(daire, esasYil, ...)`: Danıştay kararlarını detaylı kriterlerle arar.
+5. `get_danistay_document_markdown(id: str)`: Belirli bir Danıştay kararının metnini Markdown formatında getirir.
 
-### **Danıştay Araçları (Birleşik Bedesten API - Token Optimized)**
-*Not: Danıştay araçları token verimliliği için birleşik Bedesten API'ye entegre edilmiştir*
-
-### **Birleşik Bedesten API Araçları (5 Mahkeme) - 🚀 TOKEN OPTİMİZE**
-1. `search_bedesten_unified(phrase, court_types, birimAdi, kararTarihiStart, kararTarihiEnd, ...)`: **5 mahkeme türünü** birleşik arama (Yargıtay, Danıştay, Yerel Hukuk, İstinaf Hukuk, KYB) + **79 daire filtreleme** + **Tarih & Kesin Cümle Arama**
-2. `get_bedesten_document_markdown(documentId: str)`: Bedesten API'den herhangi bir belgeyi Markdown formatında getirir (HTML/PDF → Markdown)
+### **Birleşik Bedesten API Araçları (5 Mahkeme)**
+6. `search_bedesten_unified(phrase, court_types, birimAdi, kararTarihiStart, kararTarihiEnd, ...)`: **5 mahkeme türünü** birleşik arama (Yargıtay, Danıştay, Yerel Hukuk, İstinaf Hukuk, KYB) + **79 daire filtreleme** + **Tarih & Kesin Cümle Arama**
+7. `get_bedesten_document_markdown(documentId: str)`: Bedesten API'den herhangi bir belgeyi Markdown formatında getirir (HTML/PDF → Markdown)
 
 ### **Emsal Karar Araçları (UYAP)**
-3. `search_emsal_detailed_decisions(keyword, ...)`: Emsal (UYAP) kararlarını detaylı kriterlerle arar.
-4. `get_emsal_document_markdown(id: str)`: Belirli bir Emsal kararının metnini Markdown formatında getirir.
+8. `search_emsal_detailed_decisions(keyword, ...)`: Emsal (UYAP) kararlarını detaylı kriterlerle arar.
+9. `get_emsal_document_markdown(id: str)`: Belirli bir Emsal kararının metnini Markdown formatında getirir.
 
 ### **Uyuşmazlık Mahkemesi Araçları**
-5. `search_uyusmazlik_decisions(icerik, ...)`: Uyuşmazlık Mahkemesi kararlarını çeşitli form kriterleriyle arar.
-6. `get_uyusmazlik_document_markdown_from_url(document_url)`: Bir Uyuşmazlık kararını tam URL'sinden alıp Markdown formatında getirir.
+10. `search_uyusmazlik_decisions(icerik, ...)`: Uyuşmazlık Mahkemesi kararlarını çeşitli form kriterleriyle arar.
+11. `get_uyusmazlik_document_markdown_from_url(document_url)`: Bir Uyuşmazlık kararını tam URL'sinden alıp Markdown formatında getirir.
 
-### **Anayasa Mahkemesi Araçları (Birleşik API) - 🚀 TOKEN OPTİMİZE**
-7. `search_anayasa_unified(decision_type, keywords_all, ...)`: AYM kararlarını birleşik arama (Norm Denetimi + Bireysel Başvuru) - **4 araç → 2 araç optimizasyonu**
-8. `get_anayasa_document_unified(document_url, page_number)`: AYM kararlarını birleşik belge getirme - **sayfalanmış Markdown** içeriği
+### **Anayasa Mahkemesi Araçları (Norm Denetimi)**
+12. `search_anayasa_norm_denetimi_decisions(keywords_all, ...)`: AYM Norm Denetimi kararlarını kapsamlı kriterlerle arar.
+13. `get_anayasa_norm_denetimi_document_markdown(document_url, page_number)`: Belirli bir AYM Norm Denetimi kararını URL'sinden alır ve **sayfalanmış Markdown** içeriğini getirir.
+
+### **Anayasa Mahkemesi Araçları (Bireysel Başvuru)**
+14. `search_anayasa_bireysel_basvuru_report(keywords, ...)`: AYM Bireysel Başvuru "Karar Arama Raporu" oluşturur.
+15. `get_anayasa_bireysel_basvuru_document_markdown(document_url_path, page_number)`: Belirli bir AYM Bireysel Başvuru kararını URL path'inden alır ve **sayfalanmış Markdown** içeriğini getirir.
 
 ### **KİK (Kamu İhale Kurulu) Araçları**
-9. `search_kik_decisions(karar_tipi, ...)`: KİK (Kamu İhale Kurulu) kararlarını arar. 
-10. `get_kik_document_markdown(karar_id, page_number)`: Belirli bir KİK kararını, Base64 ile encode edilmiş `karar_id`'sini kullanarak alır ve **sayfalanmış Markdown** içeriğini getirir.
+16. `search_kik_decisions(karar_tipi, ...)`: KİK (Kamu İhale Kurulu) kararlarını arar. 
+17. `get_kik_document_markdown(karar_id, page_number)`: Belirli bir KİK kararını, Base64 ile encode edilmiş `karar_id`'sini kullanarak alır ve **sayfalanmış Markdown** içeriğini getirir.
 ### **Rekabet Kurumu Araçları**
     * `search_rekabet_kurumu_decisions(KararTuru: Literal[...], ...) -> RekabetSearchResult`: Rekabet Kurumu kararlarını arar. `KararTuru` için kullanıcı dostu isimler kullanılır (örn: "Birleşme ve Devralma").
     * `get_rekabet_kurumu_document(karar_id: str, page_number: Optional[int] = 1) -> RekabetDocument`: Belirli bir Rekabet Kurumu kararını `karar_id` ile alır. Kararın PDF formatındaki orijinalinden istenen sayfayı ayıklar ve Markdown formatında döndürür.
@@ -203,26 +176,12 @@ Bu FastMCP sunucusu **19 optimize edilmiş MCP aracı** sunar (token verimliliğ
     * `search_kvkk_decisions(keywords, page, pageSize, ...)`: KVKK (Kişisel Verilerin Korunması Kurulu) kararlarını Brave Search API ile arar. **Türkçe arama** + **Site hedeflemeli** (`site:kvkk.gov.tr "karar özeti"`) + **Sayfalama desteği**
     * `get_kvkk_document_markdown(decision_url: str, page_number: Optional[int] = 1)`: KVKK kararının tam metnini **sayfalanmış Markdown** formatında getirir (5.000 karakterlik sayfa)
 
-### BDDK Araçları
-    * `search_bddk_decisions(keywords, page)`: BDDK (Bankacılık Düzenleme ve Denetleme Kurumu) kararlarını arar. **"Karar Sayısı" targeting** + **Spesifik URL filtreleme** (`bddk.org.tr/Mevzuat/DokumanGetir`) + **Optimized search**
-    * `get_bddk_document_markdown(document_id: str, page_number: Optional[int] = 1)`: BDDK kararının tam metnini **sayfalanmış Markdown** formatında getirir (5.000 karakterlik sayfa)
-
-</details>
 
 ---
 
-<details>
-<summary>📊 <strong>Kapsamlı İstatistikler & Optimizasyon Başarıları</strong></summary>
-
-🚀 **TOKEN OPTİMİZASYON BAŞARISI:**
-- **%61.8 Token Azaltma:** 14,061 → 5,369 tokens (8,692 token tasarrufu)
-- **Hedef Aşım:** 10,000 token hedefini 4,631 token aştık
-- **Daha Hızlı Yanıt:** Claude AI ile optimize edilmiş etkileşim
-- **Korunan İşlevsellik:** %100 özellik desteği devam ediyor
-
-**GENEL İSTATİSTİKLER:**
+### **📊 Kapsamlı İstatistikler**
 - **Toplam Mahkeme/Kurum:** 13 farklı hukuki kurum (KVKK dahil)
-- **Toplam MCP Tool:** 19 optimize edilmiş arama ve belge getirme aracı  
+- **Toplam MCP Tool:** 30 arama ve belge getirme aracı  
 - **Daire/Kurul Filtreleme:** 87 farklı seçenek (52 Yargıtay + 27 Danıştay + 8 Sayıştay)
 - **Tarih Filtreleme:** Birleşik Bedesten API aracında ISO 8601 formatında tam tarih aralığı desteği
 - **Kesin Cümle Arama:** Birleşik Bedesten API aracında çift tırnak ile tam cümle arama (`"\"mülkiyet kararı\""` formatı)
@@ -251,19 +210,9 @@ Bedesten API   Bedesten API   Dual/Triple API   Norm+Bireysel API
   - Kesin arama: `"\"mülkiyet kararı\""` (tam cümle olarak)
   - Daha kesin sonuçlar için hukuki terimler ve kavramlar
 
-**🔧 OPTİMİZASYON DETAYLARI:**
-- **Anayasa Mahkemesi:** 4 araç → 2 birleşik araç (search_anayasa_unified + get_anayasa_document_unified)
-- **Yargıtay & Danıştay:** Ana API araçları birleşik Bedesten API'ye entegre edildi
-- **Sayıştay:** 6 araç → 2 birleşik araç (search_sayistay_unified + get_sayistay_document_unified)
-- **Parameter Optimizasyonu:** pageSize parametreleri optimize edildi
-- **Açıklama Optimizasyonu:** Uzun açıklamalar kısaltıldı (örn: KIK karar_metni)
-
-</details>
-
 ---
 
-<details>
-<summary>🌐 <strong>Web Service / ASGI Deployment</strong></summary>
+🌐 **Web Service / ASGI Deployment**
 
 Yargı MCP artık web servisi olarak da çalıştırılabilir! ASGI desteği sayesinde:
 
@@ -284,8 +233,6 @@ uvicorn asgi_app:app --host 0.0.0.0 --port 8000
 ```
 
 Detaylı deployment rehberi için: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
-
-</details>
 
 ---
 
