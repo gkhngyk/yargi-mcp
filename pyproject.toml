@@ -1,12 +1,12 @@
 [project]
 name = "yargi-mcp"
-version = "0.1.9"
+version = "0.1.4"
 description = "MCP Server For Turkish Legal Databases"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [{name = "Said Surucu", email = "saidsrc@gmail.com"}]
-keywords = ["mcp", "turkish-law", "legal", "yargitay", "danistay", "bddk", "kvkk", "turkish", "law", "court", "decisions"]
+keywords = ["mcp", "turkish-law", "legal", "yargitay", "danistay", "turkish", "law", "court", "decisions"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Legal Industry",
@@ -25,10 +25,12 @@ dependencies = [
     "markitdown[pdf]>=0.1.1",
     "pydantic>=2.11.4",
     "aiohttp>=3.11.18",
+    "playwright>=1.52.0",
     "fastmcp>=2.10.5",
     "pypdf>=5.5.0",
     "fastapi>=0.115.14",
-    "cryptography>=44.0.0",
+    "PyJWT>=2.8.0",
+    "tiktoken>=0.5.0",
 ]
 
 [project.optional-dependencies]
@@ -48,8 +50,6 @@ saas = [
     "clerk-backend-api>=3.0.0",
     "stripe>=9.1.0",
     "upstash-redis>=1.1.0",
-    "tiktoken>=0.5.0",
-    "PyJWT>=2.8.0",
 ]
 
 [project.scripts]

@@ -16,7 +16,7 @@ from .models import (
     DaireSearchRequest, DaireSearchResponse, DaireDecision,
     SayistayDocumentMarkdown
 )
-from .enums import DaireEnum, KamuIdaresiTuruEnum, WebKararKonusuEnum, WEB_KARAR_KONUSU_MAPPING
+from .enums import DaireEnum, KamuIdaresiTuruEnum, WebKararKonusuEnum
 
 logger = logging.getLogger(__name__)
 if not logger.hasHandlers():
@@ -134,11 +134,6 @@ class SayistayApiClient:
                 return "Tüm Kurumlar" 
             elif enum_type == "web_karar_konusu":
                 return "Tüm Konular"
-        
-        # Apply web_karar_konusu mapping
-        if enum_type == "web_karar_konusu":
-            return WEB_KARAR_KONUSU_MAPPING.get(enum_value, enum_value)
-        
         return enum_value
 
     def _build_datatables_params(self, start: int, length: int, draw: int = 1) -> List[Tuple[str, str]]:

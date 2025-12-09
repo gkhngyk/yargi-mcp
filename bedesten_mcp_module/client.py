@@ -12,7 +12,6 @@ from .models import (
     BedestenDocumentRequest, BedestenDocumentResponse,
     BedestenDocumentMarkdown, BedestenDocumentRequestData
 )
-from .enums import get_full_birim_adi
 
 logger = logging.getLogger(__name__)
 
@@ -50,22 +49,10 @@ class BedestenApiClient:
         """
         logger.info(f"BedestenApiClient: Searching documents with phrase: {search_request.data.phrase}")
         
-        # Map abbreviated birimAdi to full Turkish name before sending to API
-        original_birim_adi = search_request.data.birimAdi
-        mapped_birim_adi = get_full_birim_adi(original_birim_adi)
-        search_request.data.birimAdi = mapped_birim_adi
-        if original_birim_adi != "ALL":
-            logger.info(f"BedestenApiClient: Mapped birimAdi '{original_birim_adi}' to '{mapped_birim_adi}'")
-        
         try:
-            # Create request dict and remove birimAdi if empty
-            request_dict = search_request.model_dump()
-            if not request_dict["data"]["birimAdi"]:  # Remove if empty string
-                del request_dict["data"]["birimAdi"]
-            
             response = await self.http_client.post(
                 self.SEARCH_ENDPOINT, 
-                json=request_dict
+                json=search_request.model_dump()
             )
             response.raise_for_status()
             response_json = response.json()
@@ -102,22 +89,8 @@ class BedestenApiClient:
             response_json = response.json()
             doc_response = BedestenDocumentResponse(**response_json)
             
-            # Add null safety checks for document data
-            if not hasattr(doc_response, 'data') or doc_response.data is None:
-                raise ValueError("Document response does not contain data")
-            
-            if not hasattr(doc_response.data, 'content') or doc_response.data.content is None:
-                raise ValueError("Document data does not contain content")
-                
-            if not hasattr(doc_response.data, 'mimeType') or doc_response.data.mimeType is None:
-                raise ValueError("Document data does not contain mimeType")
-            
-            # Decode base64 content with error handling
-            try:
-                content_bytes = base64.b64decode(doc_response.data.content)
-            except Exception as e:
-                raise ValueError(f"Failed to decode base64 content: {str(e)}")
-            
+            # Decode base64 content
+            content_bytes = base64.b64decode(doc_response.data.content)
             mime_type = doc_response.data.mimeType
             
             logger.info(f"BedestenApiClient: Document mime type: {mime_type}")
