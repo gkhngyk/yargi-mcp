@@ -1,13 +1,13 @@
-# fly.toml app configuration file generated for yargi-mcp on 2025-06-29T00:23:47+03:00
+# fly.toml app configuration file for yargi-mcp-noauth
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'yargi-mcp'
+app = 'yargi-mcp-free'
 primary_region = 'fra'
 
 [env]
-ENABLE_AUTH = "true"
+ENABLE_AUTH = "false"
 HOST = "0.0.0.0"
 PORT = "8000"
 LOG_LEVEL = "info"
@@ -32,6 +32,12 @@ LOG_LEVEL = "info"
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
+
+[deploy]
+  strategy = "immediate"
+
+[processes]
+  app = "python asgi_app.py"
 
 [checks.http_health]             # keep MCP /health live
   type     = "http"
